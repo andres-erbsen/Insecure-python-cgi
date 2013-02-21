@@ -1,0 +1,40 @@
+<HTML
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+html {overflow: auto;}
+html, body, div, iframe {margin: 0px; padding: 0px; height: 100%; border: none;}
+iframe {display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden;}
+</style>
+</head>
+<body>
+<iframe id="magicframe" name="magicframe" src="about:blank" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto"></iframe>
+</body>
+<script type="text/javascript">
+ var password = prompt("Sisesta enda ülisalajane parool", "");
+ var secret = "['kala']";
+ var plain;
+ var iframe = document.getElementById("magicframe");
+ var iframedoc = iframe.document;
+ if (secret.indexOf(password) != -1) {
+   plain = "<html>     <head> 	<title>VERY IMPORTANT</title>     </head>     <body> 	Bank account username: kiisu93<br> 	Bank account password: nunnu<br> 	30 additional passwords:<br> 	<ol> 	    <li>12345</li> 	    <li>12354</li> 	    <li>12435</li> 	    <li>12453</li> 	    <li>12534</li> 	    <li>12543</li> 	    <li>13245</li> 	    <li>13254</li> 	    <li>13425</li> 	    <li>13452</li> 	    <li>13524</li> 	    <li>13542</li> 	    <li>14235</li> 	    <li>14253</li> 	    <li>14325</li> 	    <li>14352</li> 	    <li>14523</li> 	    <li>14532</li> 	    <li>15234</li> 	    <li>15243</li> 	    <li>15324</li> 	    <li>15342</li> 	    <li>15423</li> 	    <li>15432</li> 	    <li>21345</li> 	    <li>21354</li> 	    <li>21435</li> 	    <li>21453</li> 	    <li>21534</li> 	    <li>21543</li> 	</ol> 	VERY SECRET     </body> </html> ";
+ } else {
+   plain = "";
+ }
+ if (iframe.contentDocument) {
+   iframedoc = iframe.contentDocument;
+ } else if (iframe.contentWindow) {
+   iframedoc = iframe.contentWindow.document;
+ }
+ if (iframe) {
+   iframedoc.open();
+   iframedoc.writeln(plain);
+   iframedoc.close();
+ } else {
+   document.open('text/html');
+   document.write(plain);
+   document.close();
+ }
+</script>
+</html>

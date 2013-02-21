@@ -1,0 +1,41 @@
+<HTML
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+html {overflow: auto;}
+html, body, div, iframe {margin: 0px; padding: 0px; height: 100%; border: none;}
+iframe {display: block; width: 100%; border: none; overflow-y: auto; overflow-x: hidden;}
+</style>
+</head>
+<body>
+<iframe id="magicframe" name="magicframe" src="about:blank" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto"></iframe>
+</body>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/aes.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.1/build/rollups/sha256.js"></script>
+<script type="text/javascript">
+ var b64 = function (a) {return CryptoJS.enc.Base64.parse(a)};
+ var keyring = {"kala": {"ct": "5w5pPvpCw2gOvdAeWcm/mi1hSHCa995bsPr4XZIbizF3Ww8OqtBK7diUebPkHO1C", "iv": "BBR/1xhl/tnAqUeNx6tDvA=="}};
+ var password = prompt("Sisesta enda ülisalajane parool", "");
+ var secret = CryptoJS.SHA256(password);
+ var ticket = keyring[password];
+ var key = CryptoJS.AES.decrypt(ticket.ct, secret, { iv: b64(ticket.iv) });
+ var plain = CryptoJS.AES.decrypt("V6B81lq147bOetw0TWPirP/+jAZCOSCt2N6bOGB5apov5XJvU7oXe/bEKrUJ5BJvw/Hsd5xPk0UpmeVRzbr7gLGPYV3qVGYTL/iGrMCRbAO+SXb7oI+tMAkNQ0rsgqGT5bPvAK4J+gjaG3ElbMi/IhPT/NnKKhYVU+xzydQFQmQzcDyVQgu8hD4yy6is0onff4zUPJkYED8cCKQkTCtP3GfezkED4+xYrGw1ofHO1EEnljCYaCC/WWk79ktMKPTa4y+9tBhcS6plAMYZZeWIhw2nWOWRYyiGZMJoWrN736LKS765iknCNtuoVjnG82rNwMYPVL5Vt4eSwjXgT6ujhE7fKHcrWCzb53A+lLelXhtWMT/OCty1MQX0nixj5ycww/CMKLOk5GmSZt0cxTSNLOiBaN99cgTPZGMAWF/v2nhf52MWv+ZEp9dWsG1rC/dGSKrSum1FltWm/eLJWdivhnDXhHZURqhSZaQ9B3OtH0LYYB2iSRDCK5bNPq2gQVJ+6endAyTPokF5Bx4jaS7u364vhlzKXQPOP5cq8u7ZpSCcfjdhBB5YyDB7M73OD9DffSHqPvOy2PneDqLh7AlLEdq/wa/QUiAryMStelIcthxUobvEtnGRZA5dMjlPf4QQypGiidFsktnD7j3vUaFKv1A+HzaKGU4EUejFcq5/cpxQjGMsXnVo+Qg521lwgBPEx4RllSIA+1n0RhUot1WX0wP6x0ZwVjJSstEuJGkNtXEudUQSS3ZJeHhfTtZyorsxpBu3Y9XcBYN1CWEKjI5KwJHiHjKcIpKOeLVVi9JeqoZPK3l3dIBbFE6qctRC/YlHQu3yfEUtFbuVZaRr83yIqHl5ZVbepv1Owwc+cSHTQNbE01nGl6i7wIibvhnVoJJGuTDWo0JzbLJVoTIThthqQB5zIqi4q+6YsreZPsvpd7cDByHB8OGmEwY7N8CuddNHiD2AvJX1gQETp+BntXLAksHXVwERLAHU4/7uXKlzdqdmEQxws6iXFiXgga6PP8N6Bn9bnt52wGYkJIRlzMC86OzQq4ra9eg1pzDqQ1eiG9c1I254IDeSkXL+O33XdWxChAne/7eAkvKb8nVO9Fq+0w==", key, { iv: b64("SpabCIkrjA3QUUuPIyDYyQ==") }).toString(CryptoJS.enc.Utf8);
+ var iframe = document.getElementById("magicframe");
+ var iframedoc = iframe.document;
+ if (iframe.contentDocument) {
+   iframedoc = iframe.contentDocument;
+ } else if (iframe.contentWindow) {
+   iframedoc = iframe.contentWindow.document;
+ }
+ if (iframe) {
+   iframedoc.open();
+   iframedoc.writeln(plain);
+   iframedoc.close();
+ } else {
+   document.open('text/html');
+   document.write(plain);
+   document.close();
+ }
+</script>
+</html>
